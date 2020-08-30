@@ -8,18 +8,19 @@ using System.Text;
 namespace AnalizadorLexico
 {
     static class IngresarTexto
-    { 
-        public static Queue<Queue<char>> LeerTexto(String direccion) 
+    {
+        public static Queue<char[]> arregloTexto;
+        public static void LeerTexto(String direccion) 
         {
-            Queue<Queue<char>> lista= new Queue<Queue<char>>();
+            Queue<char[]> lista= new Queue<char[]>();
             TextReader leer = new StreamReader(direccion);
             string linea;
             while ((linea = leer.ReadLine()) != null) 
             {
-                lista.Enqueue(new Queue<char>(linea.ToList()));
+                lista.Enqueue(linea.ToCharArray());
             }
             leer.Close();
-            return lista;
+            arregloTexto = lista;
         }
     }
 }

@@ -7,15 +7,15 @@ namespace AnalizadorLexico
 {
     static class TablaSimbolos
     {
-        public static List<string> simbolo;
-        public static List<string> tipo;
+        public static List<string> simbolos=new List<string>();
+        public static List<string> tipos = new List<string>();
 
-        public static void AgregarSimbolo(string simboloName, string tipoName)
+        public static void AgregarSimbolo(string simbolo, string tipo)
         {
-            if (!simbolo.Contains(simboloName)) 
+            if (!simbolos.Contains(simbolo)&&!TablaOperadores.operadores.Contains(simbolo)) 
             {
-                simbolo.Add(simboloName);
-                tipo.Add(tipoName);sdsd
+                simbolos.Add(simbolo);
+                tipos.Add(tipo);
             }
         }
     }
