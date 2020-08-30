@@ -15,7 +15,7 @@ namespace AnalizadorLexico
             if (!simbolo.Contains(simboloName)) 
             {
                 simbolo.Add(simboloName);
-                tipo.Add(tipoName);
+                tipo.Add(tipoName);sdsd
             }
         }
     }
