@@ -17,6 +17,9 @@ namespace AnalizadorLexico
 
             TablaOperadores.AgregarOperador("hola2", "Hola");
             Console.WriteLine(TablaOperadores.operadores[0]);
+
+            Console.WriteLine("_______________________________");
+            Analizador.Analizar();
         }
     }
 }
