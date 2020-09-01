@@ -18,5 +18,12 @@ namespace AnalizadorLexico
                 tipos.Add(tipo);
             }
         }
+
+        public static void EliminarOperador(string operador)
+        {
+            int index = operadores.IndexOf(operador);
+            operadores.RemoveAt(index);
+            tipos.RemoveAt(index);
+        }
     }
 }

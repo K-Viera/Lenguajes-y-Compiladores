@@ -21,7 +21,7 @@ namespace AnalizadorLexico
                 char[] filaTemporal = IngresarTexto.arregloTexto.Dequeue();
                 for (int columna = 0; columna < filaTemporal.Length; columna++) 
                 {
-                    Console.WriteLine(filaTemporal[columna]);
+                    //Console.WriteLine(filaTemporal[columna]);
                     encontroPalabra = false;
                     posicionSimbolo = 0;
                     while (encontroPalabra == false && posicionSimbolo < TablaSimbolos.simbolos.Count) 
@@ -56,7 +56,7 @@ namespace AnalizadorLexico
                             simbolo.Add(TablaSimbolos.simbolos[posicionSimbolo]);
                             ubicacion.Add(indiceFilaActual + ","+columna+" - "+indiceFilaActual+","+columnaFilaActual);
                             tipo.Add(TablaSimbolos.tipos[posicionSimbolo]);
-                            Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual+"   Palabra: "+ TablaSimbolos.simbolos[posicionSimbolo]);
+                            //Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual+"   Palabra: "+ TablaSimbolos.simbolos[posicionSimbolo]);
                             columna = columnaFilaActual;
                         }
                         posicionSimbolo++;
@@ -96,18 +96,12 @@ namespace AnalizadorLexico
                                 simbolo.Add(TablaOperadores.operadores[posicionOperador]);
                                 ubicacion.Add(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual);
                                 tipo.Add(TablaOperadores.tipos[posicionOperador]);
-                                Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual + "   Palabra: " + TablaOperadores.operadores[posicionOperador]+"  --Operador");
+                                //Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual + "   Palabra: " + TablaOperadores.operadores[posicionOperador]+"  --Operador");
                                 columna = columnaFilaActual;
                             }
                             posicionOperador++;
                         }
-
                     }
-                    if (encontroPalabra == false) 
-                    {
-                        Console.WriteLine("letra no coincide :"+filaTemporal[columna]);
-                    }
-                    
                 }
                 indiceFilaActual++;
             }

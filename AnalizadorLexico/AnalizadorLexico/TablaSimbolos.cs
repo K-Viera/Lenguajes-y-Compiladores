@@ -18,5 +18,11 @@ namespace AnalizadorLexico
                 tipos.Add(tipo);
             }
         }
+        public static void EliminarSimbolo(string simbolo)
+        {
+            int index = simbolos.IndexOf(simbolo);
+            simbolos.RemoveAt(index);
+            tipos.RemoveAt(index);
+        }
     }
 }
