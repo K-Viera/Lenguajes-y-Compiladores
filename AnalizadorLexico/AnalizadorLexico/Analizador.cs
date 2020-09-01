@@ -11,53 +11,105 @@ namespace AnalizadorLexico
         public static List<string> tipo= new List<string>();
         public static void Analizar()
         {
-            int indiceLineaActual = 0;
+            int indiceFilaActual = 0;
+
+            Boolean encontroPalabra;
+            int posicionSimbolo;
+
             while (IngresarTexto.arregloTexto.Count!=0) 
             {
-                char[] lineaTemporal = IngresarTexto.arregloTexto.Dequeue();
-                for (int i = 0; i < lineaTemporal.Length; i++) 
+                char[] filaTemporal = IngresarTexto.arregloTexto.Dequeue();
+                for (int columna = 0; columna < filaTemporal.Length; columna++) 
                 {
-                    Console.WriteLine(lineaTemporal[i]);
-                    Boolean encontroPalabra = false;
-                    int posicionSimbolo = 0;
+                    Console.WriteLine(filaTemporal[columna]);
+                    encontroPalabra = false;
+                    posicionSimbolo = 0;
                     while (encontroPalabra == false && posicionSimbolo < TablaSimbolos.simbolos.Count) 
                     {
-                        char[] palabraArreglo = TablaSimbolos.simbolos[posicionSimbolo].ToCharArray();
-                        int posicionLinea = i;
-                        int posicionPalabra = 0;
+                        char[] simboloArreglo = TablaSimbolos.simbolos[posicionSimbolo].ToCharArray();
+                        int columnaFilaActual = columna;
+                        int posicionCaracterSimboloArreglo = 0;
                         Boolean Conincide= true;
-                        if (lineaTemporal.Length - posicionLinea < palabraArreglo.Length)
+                        if (filaTemporal.Length - columnaFilaActual < simboloArreglo.Length)
                         {
                             Conincide = false;
                         }
                         else 
                         {
-                            while (Conincide == true && posicionPalabra < palabraArreglo.Length && posicionLinea < lineaTemporal.Length)
+                            while (Conincide == true && posicionCaracterSimboloArreglo < simboloArreglo.Length && columnaFilaActual < filaTemporal.Length)
                             {
-                                if (lineaTemporal[posicionLinea] != palabraArreglo[posicionPalabra])
+                                if (filaTemporal[columnaFilaActual] != simboloArreglo[posicionCaracterSimboloArreglo])
                                 {
                                     Conincide = false;
                                 }
                                 else
                                 {
-                                    posicionLinea++;
-                                    posicionPalabra++;
+                                    columnaFilaActual++;
+                                    posicionCaracterSimboloArreglo++;
                                 }
                             }
                         }
                         if (Conincide==true)
                         {
+                            columnaFilaActual--;
                             encontroPalabra = true;
                             simbolo.Add(TablaSimbolos.simbolos[posicionSimbolo]);
-                            ubicacion.Add(indiceLineaActual + ","+i+" - "+indiceLineaActual+","+posicionLinea);
+                            ubicacion.Add(indiceFilaActual + ","+columna+" - "+indiceFilaActual+","+columnaFilaActual);
                             tipo.Add(TablaSimbolos.tipos[posicionSimbolo]);
-                            Console.WriteLine(indiceLineaActual + "," + i + " - " + indiceLineaActual + "," + posicionLinea+"   Palabra: "+ TablaSimbolos.simbolos[posicionSimbolo]);
-                            i = posicionLinea;
+                            Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual+"   Palabra: "+ TablaSimbolos.simbolos[posicionSimbolo]);
+                            columna = columnaFilaActual;
                         }
                         posicionSimbolo++;
                     }
+                    if (encontroPalabra == false) 
+                    {
+                        int posicionOperador = 0;
+                        while (encontroPalabra == false && posicionOperador < TablaOperadores.operadores.Count)
+                        {
+                            char[] operadorArreglo = TablaOperadores.operadores[posicionOperador].ToCharArray();
+                            int columnaFilaActual = columna;
+                            int posicionCaracterOperadorArreglo = 0;
+                            Boolean coincide = true;
+                            if (filaTemporal.Length - columnaFilaActual < operadorArreglo.Length)
+                            {
+                                coincide = false;
+                            }
+                            else
+                            {
+                                while (coincide == true && posicionCaracterOperadorArreglo < operadorArreglo.Length && columnaFilaActual < filaTemporal.Length)
+                                {
+                                    if (filaTemporal[columnaFilaActual] != operadorArreglo[posicionCaracterOperadorArreglo])
+                                    {
+                                        coincide = false;
+                                    }
+                                    else
+                                    {
+                                        posicionCaracterOperadorArreglo++;
+                                        columnaFilaActual++;
+                                    }
+                                }
+                            }
+                            if (coincide == true)
+                            {
+                                columnaFilaActual--;
+                                encontroPalabra = true;
+                                simbolo.Add(TablaOperadores.operadores[posicionOperador]);
+                                ubicacion.Add(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual);
+                                tipo.Add(TablaOperadores.tipos[posicionOperador]);
+                                Console.WriteLine(indiceFilaActual + "," + columna + " - " + indiceFilaActual + "," + columnaFilaActual + "   Palabra: " + TablaOperadores.operadores[posicionOperador]+"  --Operador");
+                                columna = columnaFilaActual;
+                            }
+                            posicionOperador++;
+                        }
+
+                    }
+                    if (encontroPalabra == false) 
+                    {
+                        Console.WriteLine("letra no coincide :"+filaTemporal[columna]);
+                    }
+                    
                 }
-                indiceLineaActual++;
+                indiceFilaActual++;
             }
         }
     }

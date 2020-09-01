@@ -10,12 +10,13 @@ namespace AnalizadorLexico
             Console.WriteLine(IngresarTexto.arregloTexto.Count);
 
             TablaSimbolos.AgregarSimbolo("hola", "holaTipo");
+            TablaSimbolos.AgregarSimbolo("eres", "holaTipo");
             Console.WriteLine(TablaSimbolos.simbolos[0]);
             Console.WriteLine(TablaSimbolos.tipos[0]);
 
             Console.WriteLine("_______________________________");
 
-            TablaOperadores.AgregarOperador("hola2", "Hola");
+            TablaOperadores.AgregarOperador("+", "Operador");
             Console.WriteLine(TablaOperadores.operadores[0]);
 
             Console.WriteLine("_______________________________");
