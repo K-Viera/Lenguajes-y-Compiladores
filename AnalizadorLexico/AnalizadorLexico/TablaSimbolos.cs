@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -9,9 +10,12 @@ namespace AnalizadorLexico
     {
         public static List<string> simbolos=new List<string>();
         public static List<List<string>> tipos = new List<List<string>>();
+        public static List<char> excepcionesInicioIdentificadores = new List<char>();
+
+        #region Simbolos
         public static void AgregarSimbolo(string simbolo)
         {
-            if (!simbolos.Contains(simbolo)&&!TablaOperadores.operadores.Contains(simbolo)) 
+            if (!simbolos.Contains(simbolo)) 
             {
                 simbolos.Add(simbolo);
                 List<string> tipoTemporal = new List<string>();
@@ -20,7 +24,7 @@ namespace AnalizadorLexico
         }
         public static void AgregarSimbolo(string simbolo,string tipo)
         {
-            if (!simbolos.Contains(simbolo) && !TablaOperadores.operadores.Contains(simbolo))
+            if (!simbolos.Contains(simbolo))
             {
                 simbolos.Add(simbolo);
                 List<string> tipoTemporal = new List<string>();
@@ -43,5 +47,6 @@ namespace AnalizadorLexico
             simbolos.RemoveAt(index);
             tipos.RemoveAt(index);
         }
+        #endregion 
     }
 }
