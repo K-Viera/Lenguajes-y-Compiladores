@@ -7,12 +7,12 @@ namespace AnalizadorLexico
         static void Main(string[] args)
         {
             IngresarTexto.LeerTexto("hola.txt");
+            IngresarTexto.imprimirCaracteres();
             Console.WriteLine(IngresarTexto.arregloTexto.Count);
 
             TablaSimbolos.AgregarSimbolo("hola", "holaTipo");
             TablaSimbolos.AgregarSimbolo("eres", "holaTipo");
             Console.WriteLine(TablaSimbolos.simbolos[0]);
-            Console.WriteLine(TablaSimbolos.tipos[0]);
 
             Console.WriteLine("_______________________________");
 
