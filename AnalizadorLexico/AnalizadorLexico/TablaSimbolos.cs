@@ -10,7 +10,15 @@ namespace AnalizadorLexico
     {
         public static List<string> simbolos=new List<string>();
         public static List<List<string>> tipos = new List<List<string>>();
+
+
         public static List<char> excepcionesInicioIdentificadores = new List<char>();
+
+        public static void CarcarModuloPorDefecto() 
+        {
+            AgregarSimbolo("\f", "separador");
+            AgregarSimbolo("\n", "separador");
+        }
 
         #region Simbolos
         public static void AgregarSimbolo(string simbolo)
@@ -41,6 +49,7 @@ namespace AnalizadorLexico
                 tipos[index].Add(tipo);
             }
         }
+
         public static void EliminarSimbolo(string simbolo)
         {
             int index = simbolos.IndexOf(simbolo);

@@ -6,21 +6,23 @@ namespace AnalizadorLexico
     {
         static void Main(string[] args)
         {
-            IngresarTexto.LeerTexto("hola.txt");
+            IngresarTexto.LeerTexto("texto.txt");
             IngresarTexto.imprimirCaracteres();
-            Console.WriteLine(IngresarTexto.arregloTexto.Count);
 
-            TablaSimbolos.AgregarSimbolo("hola", "holaTipo");
-            TablaSimbolos.AgregarSimbolo("eres", "holaTipo");
-            Console.WriteLine(TablaSimbolos.simbolos[0]);
+            TablaSimbolos.CarcarModuloPorDefecto();
+            TablaSimbolos.AgregarSimbolo("boolean", "Tipo de dato");
+            TablaSimbolos.AgregarSimbolo("=", "operador");
+            TablaSimbolos.AgregarTipoASimbolo("=", "separador");
+            TablaSimbolos.AgregarSimbolo("(", "separador");
+            TablaSimbolos.AgregarSimbolo(" ", "separador");
+            TablaSimbolos.AgregarSimbolo(")", "separador");
+            TablaSimbolos.AgregarSimbolo("{", "separador");
+            TablaSimbolos.AgregarSimbolo("}", "separador");
+            TablaSimbolos.AgregarSimbolo("==", "operador");
+            TablaSimbolos.AgregarTipoASimbolo("==", "separador");
 
-            Console.WriteLine("_______________________________");
-
-            TablaOperadores.AgregarOperador("+", "Operador");
-            Console.WriteLine(TablaOperadores.operadores[0]);
-
-            Console.WriteLine("_______________________________");
-            Analizador.Analizar();
+            Analizador.AnalizarCompleto();
+            Analizador.imprimirTabla();
         }
     }
 }

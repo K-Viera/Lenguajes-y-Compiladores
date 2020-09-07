@@ -1,0 +1,6 @@
+boolean condicion
+while{condicion==false}
+
+public void main(caracter)
+condicion=true
+return condicion

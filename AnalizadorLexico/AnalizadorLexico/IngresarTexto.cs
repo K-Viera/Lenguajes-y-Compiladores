@@ -19,6 +19,7 @@ namespace AnalizadorLexico
             string linea = leer.ReadLine();
             //se añade el caracter Form Feed que indica el inicio del texto
             linea = "\f" + linea + "\n";
+            lista.Enqueue(linea.ToCharArray());
             while ((linea = leer.ReadLine()) != null) 
             {
                 //se añade el caracter de salto de linea al final de cada linea de texto
