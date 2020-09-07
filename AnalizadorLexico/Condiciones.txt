@@ -1,0 +1,15 @@
+condicion 1: que al comparar cierto caracter con los el primer caracter de los simbolos, coincida con 1 y solo 1 del tipo separador,
+a su vez este separador conste de 1 y solo 1 caracter (Ejm "="),en este caso simplemente se asigna a la tabla identificada final.
+
+condicion 2: que al comparar cierto caracter con los el primer caracter de los simbolos, coincida con 1 y solo 1 del tipo separador,
+pero a su vez este conste de mas de 1 caracter (ejm "=="),en este caso el primer caracter coincide, pero puede caber la
+posibilidad de que la sentencia sea un ("=" simple) en este caso no se toma como un separador,pero si el siguiente caracter
+tambien es un "=" entonces si sera un separador ("==").
+
+condicion 3:que al comparar cierto caracter con los el primer caracter de los simbolos, coincida mas de 1 simbolo tipo separador,
+(ejm "=","====","=!") en este caso se debera corroborar que el siguiente caracter corresponda con alguno de los otros, sino el separador
+sera ("="), sino sera el que corresponda. Hay la cabida de que haya una sentencia como "===" la cual coincide el primer caracter del simbolo,
+pero no corresponde a ningun separador, en este caso se toma como 2 "=" tipo separador y el caracter "=" intermedio como un identificador
+.
+
+condicion 4:Que comience con un caracter que no esta permitido, en tal caso, no lo agrega a la tabla de simbolo.

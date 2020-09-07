@@ -8,18 +8,42 @@ using System.Text;
 namespace AnalizadorLexico
 {
     static class IngresarTexto
-    { 
-        public static Queue<Queue<char>> LeerTexto(String direccion) 
+    {
+        public static Queue<char[]> arregloTexto;
+
+
+        public static void LeerTexto(String direccion) 
         {
-            Queue<Queue<char>> lista= new Queue<Queue<char>>();
+            Queue<char[]> lista= new Queue<char[]>();
             TextReader leer = new StreamReader(direccion);
-            string linea;
+            string linea = leer.ReadLine();
+            //se añade el caracter Form Feed que indica el inicio del texto
+            linea = "\f" + linea + "\n";
+            lista.Enqueue(linea.ToCharArray());
             while ((linea = leer.ReadLine()) != null) 
             {
-                lista.Enqueue(new Queue<char>(linea.ToList()));
+                //se añade el caracter de salto de linea al final de cada linea de texto
+                linea = linea + "\n";
+                lista.Enqueue(linea.ToCharArray());
             }
             leer.Close();
-            return lista;
+            arregloTexto = lista;
+        }
+
+
+        //imprime caracter por caracter todo el contenido del texto ingresado en formato ASCII
+        public static void imprimirCaracteres()
+        {
+            List<char[]> temp = arregloTexto.ToList();
+            int contador = 1;
+            foreach (char[] linea in temp) 
+            {
+                foreach (char caracter in linea) 
+                {
+                    Console.WriteLine(contador + ": " + (int)caracter);
+                    contador++;
+                }
+            }
         }
     }
 }
