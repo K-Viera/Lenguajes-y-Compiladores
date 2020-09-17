@@ -1,4 +1,4 @@
-boolean  condicion
+boolean condicion
 while{condicion==false}
 
 public void main(caracter)

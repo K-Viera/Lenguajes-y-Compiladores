@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace AnalizadorLexico
 {
@@ -14,7 +15,6 @@ namespace AnalizadorLexico
             TablaSimbolos.AgregarSimbolo("=", "operador");
             TablaSimbolos.AgregarTipoASimbolo("=", "separador");
             TablaSimbolos.AgregarSimbolo("(", "separador");
-            TablaSimbolos.AgregarSimbolo(" ", "separador");
             TablaSimbolos.AgregarSimbolo(")", "separador");
             TablaSimbolos.AgregarSimbolo("{", "separador");
             TablaSimbolos.AgregarSimbolo("}", "separador");
@@ -23,6 +23,7 @@ namespace AnalizadorLexico
 
             Analizador.AnalizarCompleto();
             Analizador.imprimirTabla();
+            Thread.Sleep(20000000);
         }
     }
 }

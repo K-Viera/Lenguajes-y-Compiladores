@@ -1,0 +1,13 @@
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.exe
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.deps.json
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.runtimeconfig.json
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.runtimeconfig.dev.json
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.dll
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\bin\Release\netcoreapp3.1\AnalizadorLexico.pdb
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.csprojAssemblyReference.cache
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.AssemblyInfoInputs.cache
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.AssemblyInfo.cs
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.csproj.CoreCompileInputs.cache
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.dll
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.pdb
+C:\Users\programador1\source\Lenguajes y Compiladores\AnalizadorLexico\AnalizadorLexico\obj\Release\netcoreapp3.1\AnalizadorLexico.genruntimeconfig.cache

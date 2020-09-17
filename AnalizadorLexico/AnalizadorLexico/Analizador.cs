@@ -33,7 +33,6 @@ namespace AnalizadorLexico
                     if (primerSeparador == false)
                     {
                         posicionSeparadorInicial = posicionCaracterFilaActual;
-                        posicionCaracterFilaActual++;
                         primerSeparador = true;
                     }
                     else
@@ -46,26 +45,7 @@ namespace AnalizadorLexico
                             //while que busca el siguiete separador,caracter por caracter
                             while (segundoSeparador == false)
                             {
-                                List<int> indexSimbolosCoincidencias = new List<int>();
-                                char caracterActual = filaActual[posicionCaracterFilaActual];
-                                int simboloActual = 0;
-
-                                //while que compara el caracter actual con todos los simbolos y si son identificadores
-                                //para ver si coinciden
-                                while (simboloActual < TablaSimbolos.simbolos.Count)
-                                {
-                                    if (caracterActual == TablaSimbolos.simbolos[simboloActual][0])
-                                    {
-                                        foreach (string tipo in TablaSimbolos.tipos[simboloActual])
-                                        {
-                                            if (tipo == "separador")
-                                            {
-                                                indexSimbolosCoincidencias.Add(simboloActual);
-                                            }
-                                        }
-                                    }
-                                    simboloActual++;
-                                }
+                                List<int> indexSimbolosCoincidencias = encontrarCoincidencias(filaActual[posicionCaracterFilaActual]);
 
                                 if (indexSimbolosCoincidencias.Count == 1)
                                 {
@@ -146,12 +126,7 @@ namespace AnalizadorLexico
                                         }
                                         else
                                         {
-                                            simbolos.Add(TablaSimbolos.simbolos[indexSimbolosCoincidencias[0]]);
-                                            operadorFinalTamaño = TablaSimbolos.simbolos[indexSimbolosCoincidencias[0]].Length;
-                                            ubicaciones.Add(indiceFilaActual + "," + posicionCaracterFilaActual + " - " + indiceFilaActual + "," + (posicionCaracterFilaActual + contador));
-                                            tipos.Add(TablaSimbolos.tipos[indexSimbolosCoincidencias[0]]);
-                                            posicionSeparadorFinal = posicionCaracterFilaActual;
-                                            segundoSeparador = true;
+                                            Console.WriteLine("Error 404");
                                         }
                                     }
                                 }
@@ -163,46 +138,49 @@ namespace AnalizadorLexico
                         else
                         {
                             segundoSeparador = false;
-                            Boolean sePuede = true;
-                            //condicion 4
-                            foreach (char inicio in TablaSimbolos.excepcionesInicioIdentificadores)
+                            if ((posicionSeparadorFinal-posicionSeparadorInicial)>1) 
                             {
-                                if (filaActual[posicionSeparadorInicial + 1] == inicio) sePuede = false;
-                            }
-                            if (sePuede = true)
-                            {
-                                Boolean esSimbolo = false;
-                                foreach (string simbolo in TablaSimbolos.simbolos)
+                                Boolean sePuede = true;
+                                //condicion 4
+                                foreach (char inicio in TablaSimbolos.excepcionesInicioIdentificadores)
                                 {
-                                    if (simbolo.Length == posicionSeparadorFinal - posicionSeparadorInicial - 1)
-                                    {
-                                        Boolean coincidenTodosLosCaracteres = true;
-                                        for (int x = 0; x < simbolo.Length; x++)
-                                        {
-                                            if (filaActual[posicionSeparadorInicial + 1 + x] != simbolo[x]) coincidenTodosLosCaracteres = false;
-                                        }
-                                        if (coincidenTodosLosCaracteres == true)
-                                        {
-                                            esSimbolo = true;
-                                            simbolos.Add(simbolo);
-                                            ubicaciones.Add(indiceFilaActual + "," + (posicionSeparadorInicial + 1) + " - " + indiceFilaActual + "," + (posicionSeparadorFinal - 1));
-                                            tipos.Add(TablaSimbolos.tipos[TablaSimbolos.simbolos.IndexOf(simbolo)]);
-                                            break;
-                                        }
-                                    }
+                                    if (filaActual[posicionSeparadorInicial + 1] == inicio) sePuede = false;
                                 }
-                                if (esSimbolo == false)
+                                if (sePuede == true)
                                 {
-                                    string simbolo = "";
-                                    for (int i = posicionSeparadorInicial + 1; i < posicionSeparadorFinal; i++)
+                                    Boolean esSimbolo = false;
+                                    foreach (string simbolo in TablaSimbolos.simbolos)
                                     {
-                                        simbolo = simbolo + filaActual[i];
+                                        if (simbolo.Length == posicionSeparadorFinal - posicionSeparadorInicial - 1)
+                                        {
+                                            Boolean coincidenTodosLosCaracteres = true;
+                                            for (int x = 0; x < simbolo.Length; x++)
+                                            {
+                                                if (filaActual[posicionSeparadorInicial + 1 + x] != simbolo[x]) coincidenTodosLosCaracteres = false;
+                                            }
+                                            if (coincidenTodosLosCaracteres == true)
+                                            {
+                                                esSimbolo = true;
+                                                simbolos.Add(simbolo);
+                                                ubicaciones.Add(indiceFilaActual + "," + (posicionSeparadorInicial + 1) + " - " + indiceFilaActual + "," + (posicionSeparadorFinal - 1));
+                                                tipos.Add(TablaSimbolos.tipos[TablaSimbolos.simbolos.IndexOf(simbolo)]);
+                                                break;
+                                            }
+                                        }
                                     }
-                                    simbolos.Add(simbolo);
-                                    ubicaciones.Add(indiceFilaActual + "," + (posicionSeparadorInicial + 1) + " - " + indiceFilaActual + "," + (posicionSeparadorFinal - 1));
-                                    List<string> tipo = new List<string>();
-                                    tipo.Add("indentificador");
-                                    tipos.Add(tipo);
+                                    if (esSimbolo == false)
+                                    {
+                                        string simbolo = "";
+                                        for (int i = posicionSeparadorInicial + 1; i < posicionSeparadorFinal; i++)
+                                        {
+                                            simbolo = simbolo + filaActual[i];
+                                        }
+                                        simbolos.Add(simbolo);
+                                        ubicaciones.Add(indiceFilaActual + "," + (posicionSeparadorInicial + 1) + " - " + indiceFilaActual + "," + (posicionSeparadorFinal - 1));
+                                        List<string> tipo = new List<string>();
+                                        tipo.Add("indentificador");
+                                        tipos.Add(tipo);
+                                    }
                                 }
                             }
                             if (posicionSeparadorFinal == filaActual.Length - 1)
@@ -219,6 +197,28 @@ namespace AnalizadorLexico
                 }
                 indiceFilaActual++;
             }
+        }
+        public static List<int> encontrarCoincidencias(char caracterActual)
+        {
+            List<int> indexSimbolosCoincidencias = new List<int>();
+            int simboloActual = 0;
+            //while que compara el caracter actual con todos los simbolos y si son identificadores
+            //para ver si coinciden
+            while (simboloActual < TablaSimbolos.simbolos.Count)
+            {
+                if (caracterActual == TablaSimbolos.simbolos[simboloActual][0])
+                {
+                    foreach (string tipo in TablaSimbolos.tipos[simboloActual])
+                    {
+                        if (tipo == "separador")
+                        {
+                            indexSimbolosCoincidencias.Add(simboloActual);
+                        }
+                    }
+                }
+                simboloActual++;
+            }
+            return indexSimbolosCoincidencias;
         }
 
         public static void imprimirTabla() 

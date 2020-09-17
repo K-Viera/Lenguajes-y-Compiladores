@@ -18,6 +18,7 @@ namespace AnalizadorLexico
         {
             AgregarSimbolo("\f", "separador");
             AgregarSimbolo("\n", "separador");
+            AgregarSimbolo(" ", "separador");
         }
 
         #region Simbolos
